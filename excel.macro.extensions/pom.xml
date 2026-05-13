@@ -65,7 +65,7 @@
 	<properties>
 		<package.name>de.biovoxxel.excel.macro.extensions</package.name>
 		<license.copyrightOwners>Jan Brocher</license.copyrightOwners>
-		<license.licenseName>BSD-3</license.licenseName>
+		<license.licenseName>Apache-2.0</license.licenseName>
 	</properties>
 	
 	<scm>
