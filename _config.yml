@@ -1,7 +1,7 @@
 theme: jekyll-theme-minimal
 title: BioVoxxel ImageJ Excel Macro Extensions
 author: Jan Brocher
-logo: images/libreofficecalc_94853.svg
+logo: images/libreofficecalc_94853.png
 
 navbar-links:
   Homepage: https://www.biovoxxel.de
