@@ -1,0 +1,35 @@
+run("Excel Macro Extensions");
+
+dir = getDirectory("home") + "Desktop/Test.xlsx";
+
+if (File.exists(dir)) {
+	deleted = File.delete(dir);
+}
+run("Set Measurements...", "area mean standard modal min centroid center perimeter bounding fit shape feret's integrated median skewness kurtosis area_fraction display redirect=None decimal=3");
+setOption("BlackBackground", true);
+run("Blobs (25K)");
+run("Make Binary");
+blobimage = getImageID();
+
+run("Analyze Particles...", "display exclude clear summarize");
+Plot.create("Plot_of_Results", "x", "Area");
+Plot.add("Separated Bars", Table.getColumn("Area", "Results"));
+Plot.setStyle(0, "blue,#a0a0ff,1.0,Separated Bars");
+Plot.show();
+plotImage = getImageID();
+
+Ext.xlsx_SaveAllTablesToWorkbook(dir, false, false);
+Ext.xlsx_SaveTableAsWorksheet("Results", dir, "", true, false);
+Ext.xlsx_SaveTableAsWorksheet("Results", dir, "", true, true);
+Ext.xlsx_SaveTableAsWorksheet("Results", dir, "", false, true);
+Ext.xlsx_SaveTableAsWorksheet("Results", dir, "WithSheetName", true, false);
+Ext.xlsx_AddImageToWorksheet(blobimage, dir, 0, 5, 5);
+Ext.xlsx_AddImageToWorksheet(plotImage, dir, 1, 5, 5);
+Ext.xlsx_AppendArrayAsExcelColumn(newArray("Heading","b","c","d","e","f","g","h"), dir, 1, 0, "0.00");
+Ext.xlsx_AppendArrayAsExcelRow(newArray(0,1,2,3,4,5,6,7,8,9), dir, "LAST", 1);
+close("*");
+close("Results");
+close("Summary");
+Ext.xlsx_ImportXlsxWorksheetAsTable(dir, 1);
+Ext.xlsx_SetColumnDataFormat(dir, 2, 3, "@");
+

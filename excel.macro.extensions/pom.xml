@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>org.scijava</groupId>
+		<artifactId>pom-scijava</artifactId>
+		<version>40.0.0</version>
+	</parent>
+	
+	<groupId>de.biovoxxel</groupId>
+	<artifactId>excel.macro.extensions</artifactId>
+	<version>4.0.0</version>
+	<name>Excel Functions</name>
+	<packaging>jar</packaging>
+	
+	<organization>
+		<name>BioVoxxel</name>
+		<url>http://www.biovoxxel.de</url>
+	</organization>
+	
+	<developers>
+		<developer>
+			<id>biovoxxel</id>
+			<name>Jan Brocher</name>
+			<email>jan.brocher@biovoxxel.de</email>
+			<organization>BioVoxxel</organization>
+			<organizationUrl>https://www.biovoxxel.de</organizationUrl>
+			<roles>
+				<role>developer</role>
+			</roles>
+			<timezone>-6</timezone>
+		</developer>
+	</developers>
+	
+	<licenses>
+		<license>
+			<name>BSD-3</name>
+		</license>
+	</licenses>
+	
+	<contributors>
+		<contributor>
+			<name>None</name>
+		</contributor>
+	</contributors>
+	
+	<mailingLists>
+		<mailingList>
+			<name>https://forum.image.sc/</name>
+		</mailingList>
+	</mailingLists>
+	
+	<repositories>
+		<repository>
+			<id>imagej.public</id>
+			<url>http://maven.imagej.net/content/groups/public</url>
+		</repository>
+		<repository>
+			<id>imagej.snapshots</id>
+			<url>http://maven.imagej.net/content/repositories/snapshots</url>
+		</repository>
+	</repositories>
+	
+	<properties>
+		<package.name>de.biovoxxel.excel.macro.extensions</package.name>
+		<license.copyrightOwners>Jan Brocher</license.copyrightOwners>
+		<license.licenseName>BSD-3</license.licenseName>
+	</properties>
+	
+	<scm>
+		<url>https://github.com/biovoxxel/excel.functions</url>
+		<developerConnection>Jan Brocher</developerConnection>
+		<tag>excel.functions</tag>
+	</scm>
+	
+	<ciManagement>
+		<system>none</system>
+	</ciManagement>
+	
+	<issueManagement>
+		<system>GitHub Issues</system>
+		<url>https://github.com/biovoxxel/excel.functions/issues</url>
+	</issueManagement>
+	
+	<inceptionYear>2021</inceptionYear>
+	
+	<dependencies>
+		<dependency>
+			<groupId>org.scijava</groupId>
+			<artifactId>scijava-common</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.scijava</groupId>
+			<artifactId>script-editor</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>net.imagej</groupId>
+			<artifactId>ij</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>net.imagej</groupId>
+			<artifactId>imagej-legacy</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-lang3</artifactId>
+		</dependency>
+		<dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <scope>test</scope>
+        </dependency>
+	</dependencies>
+	
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources/legacy</directory>			
+					<includes>
+						<include>plugins.config</include>
+					</includes>
+			</resource>
+		</resources>
+	  <plugins>
+	    <plugin>
+	      <groupId>org.apache.maven.plugins</groupId>
+	      <artifactId>maven-jar-plugin</artifactId>
+	     <configuration>
+	        <outputDirectory>D:\BioVoxxel\Fiji\Fiji.app - BVTB 3.0\plugins</outputDirectory>
+	      </configuration>
+	    </plugin>
+	  </plugins>
+	</build>
+	
+	
+	<description>This ImageJ macro extensions enable the user to save ImageJ tables in form of a new Excel workbook (.xlsx) or a specific sheet in a new or an existing workbook</description>
+	<url>https://github.com/biovoxxel/excel.functions</url>
+</project>
