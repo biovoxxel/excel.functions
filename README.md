@@ -1,8 +1,9 @@
 # ImageJ Excel Macro Extensions
 
-
+![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20160193.svg)
+![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/biovoxxel/excel.functions?include_prereleases&style=plastic)
+![GitHub](https://img.shields.io/github/license/biovoxxel/excel.functions?style=plastic)
 ![GitHub issues](https://img.shields.io/github/issues/biovoxxel/excel.functions?style=plastic)
-
 
 <a name="introduction"></a>
 ## Introduction
