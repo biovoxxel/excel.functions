@@ -1,5 +1,9 @@
 # ImageJ Excel Macro Extensions
 
+
+![GitHub issues](https://img.shields.io/github/issues/biovoxxel/excel.functions?style=plastic)
+
+
 <a name="introduction"></a>
 ## Introduction
 The Excel macro extensions for ImageJ and Fiji are meant to make saving results tables in ImageJ and Fiji easy acessible on various different levels:
