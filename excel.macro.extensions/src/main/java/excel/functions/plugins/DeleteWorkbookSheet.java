@@ -4,7 +4,6 @@
 package excel.functions.plugins;
 
 import java.io.File;
-import java.util.logging.Logger;
 
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -23,8 +22,6 @@ import ij.macro.MacroExtension;
 
 @Plugin(type = Command.class, menuPath = "Plugins>Excel Functions>Delete worksheet")
 public class DeleteWorkbookSheet implements Command, BioVoxxelMacroExtensionDescriptor {
-	
-	protected static final Logger logger = Logger.getLogger(ExcelUtils.class.getName());
 	
 	
 	@Parameter(required = true)
@@ -45,10 +42,10 @@ public class DeleteWorkbookSheet implements Command, BioVoxxelMacroExtensionDesc
 	protected static void deleteWorkbookSheet(File workbookFile, String sheetNameOrIndexString) {
 			
 		Workbook workbook = ExcelUtils.getWorkbook(workbookFile);
-		logger.info("Workbook = " + workbook);
+		System.out.println("Workbook = " + workbook);
 		
 		if (workbook == null) {
-			logger.info("Aborting due to nonexisting workbook");
+			System.out.println("Aborting due to nonexisting workbook");
 			return;	//stop processing if no workbook created or access blocked
 		}
 		

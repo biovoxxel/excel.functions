@@ -6,9 +6,7 @@ package excel.functions.utils;
 import java.awt.Dimension;
 import java.awt.Window;
 import java.io.ByteArrayOutputStream;
-import java.io.EOFException;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -16,21 +14,14 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.Handler;
-import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
 
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.poi.EmptyFileException;
 import org.apache.poi.EncryptedDocumentException;
-import org.apache.poi.ooxml.POIXMLException;
-import org.apache.poi.openxml4j.exceptions.OpenXML4JRuntimeException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.CellType;
@@ -65,10 +56,6 @@ import ij.text.TextWindow;
  */
 public class ExcelUtils {
 
-	//Logger parameters
-	private static final String LOGGER_FORMAT = "[%1$tY-%1$tm-%1$td] [%1$tH:%1$tM:%1$tS] [%4$s] %5$s%6$s%n";
-	private static Level LOGGER_LEVEL = null;
-	private static Level CONSOLE_LOGGER_LEVEL = null;
 	protected static final Logger logger = Logger.getLogger(ExcelUtils.class.getName());
 	protected static final int EXCEL_SHEET_NAME_LIMIT = 30;
 	
@@ -78,44 +65,7 @@ public class ExcelUtils {
 //	private static final String LAST_SHEET_INDICATOR = "LAST_SHEET";
 //	
 	
-	/**
-	 * 
-	 * @param level - {@link Level}
-	 */
-	public static void setupLogger(Level level) {
-		LOGGER_LEVEL = level;
-		CONSOLE_LOGGER_LEVEL = level;
-		setupLogger();
-	}
-	
-	
-	public static void setupLogger() {
-		
-		System.setProperty("java.util.logging.SimpleFormatter.format", LOGGER_FORMAT);			
-		
-		if (LOGGER_LEVEL == null) {
-			LOGGER_LEVEL = Level.OFF;
-		}
-		
-		if (CONSOLE_LOGGER_LEVEL == null) {
-			CONSOLE_LOGGER_LEVEL = Level.OFF;
-		}
-		
-		logger.setLevel(LOGGER_LEVEL);
-		logger.setUseParentHandlers(false);
-		
-		Handler[] existingHandlers = logger.getHandlers();
-		
-		for (int handler = 0; handler <	existingHandlers.length; handler++) {
-			logger.removeHandler(existingHandlers[handler]);			
-		}
-		
-		ConsoleHandler consoleHandler = new ConsoleHandler();
-		consoleHandler.setLevel(CONSOLE_LOGGER_LEVEL);
-		consoleHandler.setFormatter(new SimpleFormatter());
-		
-		logger.addHandler(consoleHandler);	
-	}
+
 	
 	
 	public static ResultsTable getIJResultsTable(String ijTableName) {

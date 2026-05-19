@@ -5,7 +5,6 @@ package excel.functions.plugins;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.Logger;
 
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -22,8 +21,7 @@ import ij.macro.MacroExtension;
  */
 public class AppendArrayAsExcelColumn implements BioVoxxelMacroExtensionDescriptor {
 
-	protected static final Logger logger = Logger.getLogger(ExcelUtils.class.getName());
-	
+
 	
 	protected static void appendArrayAsTableColumn(String[] array, File workbookFile, String sheetNameOrIndexString, int startingRow) {
 		
@@ -39,7 +37,7 @@ public class AppendArrayAsExcelColumn implements BioVoxxelMacroExtensionDescript
 			e.printStackTrace();
 			return;
 		}
-		logger.info("Workbook = " + workbook);
+		System.out.println("Workbook = " + workbook);
 		
 		Sheet sheet = ExcelUtils.getSheet(workbook, sheetNameOrIndexString);
 		

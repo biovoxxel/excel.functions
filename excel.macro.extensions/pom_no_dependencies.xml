@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   	<modelVersion>4.0.0</modelVersion>
 	
-		<parent>
+	<parent>
 		<groupId>org.scijava</groupId>
 		<artifactId>pom-scijava</artifactId>
 		<version>40.0.0</version>
@@ -10,7 +10,7 @@
 	
 	<groupId>de.biovoxxel</groupId>
 	<artifactId>excel.macro.extensions</artifactId>
-	<version>5.0.0</version>
+	<version>4.0.0</version>
 	<name>Excel Functions</name>
 	<packaging>jar</packaging>
 	
@@ -131,50 +131,26 @@
 	</dependencies>
 	
 	<build>
-	  <plugins>
-		  
-		<!-- do assembly and integrate dependencies -->
-		  <plugin>
-		    <artifactId>maven-assembly-plugin</artifactId>		
-			<configuration>
-		        <descriptorRefs>
-		        	<descriptorRef>jar-with-dependencies</descriptorRef>
-		        </descriptorRefs>
-		        <outputDirectory>D:\BioVoxxel\Fiji\Fiji.app - BVTB 3.0\plugins</outputDirectory>
-		    </configuration> 
-		    <executions>
-		        <execution>
-		            <id>make-assembly-with-dependencies</id> 
-		            <phase>package</phase>
-		            <goals>
-		                <goal>single</goal>
-		            </goals>
-		        </execution>
-		    </executions>	
-		</plugin>
-		
-        <plugin>
-            <artifactId>maven-surefire-plugin</artifactId>
-          
-        </plugin>
-        <plugin>
-            <artifactId>maven-failsafe-plugin</artifactId>
-            
-        </plugin>
-        
-	  </plugins>
-	  <resources>
+		<resources>
 			<resource>
 				<directory>src/main/resources/legacy</directory>			
 					<includes>
 						<include>plugins.config</include>
-					</includes>	
+					</includes>
 			</resource>
-	  </resources>
+		</resources>
+	  <plugins>
+	    <plugin>
+	      <groupId>org.apache.maven.plugins</groupId>
+	      <artifactId>maven-jar-plugin</artifactId>
+	     <configuration>
+	        <outputDirectory>D:\BioVoxxel\Fiji\Fiji.app - BVTB 3.0\plugins</outputDirectory>
+	      </configuration>
+	    </plugin>
+	  </plugins>
 	</build>
 	
 	
-	
 	<description>This ImageJ macro extensions enable the user to save ImageJ tables in form of a new Excel workbook (.xlsx) or a specific sheet in a new or an existing workbook</description>
-	<url>https://gitlab.com/biovoxxel/excel-table-macro-extensions</url>
+	<url>https://github.com/biovoxxel/excel.functions</url>
 </project>

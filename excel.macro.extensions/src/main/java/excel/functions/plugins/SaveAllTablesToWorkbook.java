@@ -4,7 +4,6 @@
 package excel.functions.plugins;
 
 import java.io.File;
-import java.util.logging.Logger;
 
 import org.scijava.command.Command;
 import org.scijava.plugin.Parameter;
@@ -24,8 +23,6 @@ import ij.measure.ResultsTable;
 @Plugin(type = Command.class, menuPath = "Plugins>Excel Functions>Save all tables to workbook")
 public class SaveAllTablesToWorkbook implements Command, BioVoxxelMacroExtensionDescriptor {
 
-	protected static final Logger logger = Logger.getLogger(ExcelUtils.class.getName());
-	
 	@Parameter
 	File file;
 		
@@ -44,12 +41,12 @@ public class SaveAllTablesToWorkbook implements Command, BioVoxxelMacroExtension
 	protected static void saveAllOpenTablesAsWorkbookSheets(File workbookFile, boolean includeHeadings) {
 		
 		String[] nonImageWindowNames = WindowManager.getNonImageTitles();
-		logger.finest("Non image windows: " + nonImageWindowNames);
+		System.out.println("Non image windows: " + nonImageWindowNames);
 		
 		for (int window = 0; window < nonImageWindowNames.length; window++) {
 			
 			ResultsTable currentTable = ResultsTable.getResultsTable(nonImageWindowNames[window]);
-			logger.finest("Current results table = " + currentTable);
+			System.out.println("Current results table = " + currentTable);
 			
 			if (currentTable != null) {
 				SaveTableAsWorksheet.saveTableAsWorkbookSheet(currentTable, workbookFile, nonImageWindowNames[window], includeHeadings);

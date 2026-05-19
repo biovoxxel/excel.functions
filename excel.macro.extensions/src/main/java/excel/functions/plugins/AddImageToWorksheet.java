@@ -5,7 +5,6 @@ package excel.functions.plugins;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
@@ -33,8 +32,6 @@ import ij.macro.MacroExtension;
 
 @Plugin(type = Command.class, menuPath = "Plugins>Excel Functions>Add image to worksheet")
 public class AddImageToWorksheet implements Command, BioVoxxelMacroExtensionDescriptor {
-
-	protected static final Logger logger = Logger.getLogger(ExcelUtils.class.getName());
 	
 	@Parameter
 	ImagePlus imagePlus;
@@ -60,13 +57,14 @@ public class AddImageToWorksheet implements Command, BioVoxxelMacroExtensionDesc
 	
 	protected static void addImageToWorksheet(ImagePlus imagePlus, File workbookFile, String sheetNameOrIndexString, int column, int row) {
 				
-		logger.info("ImagePlus = " + imagePlus);
+		System.out.println("ImagePlus = " + imagePlus);
 		
 		if (imagePlus == null) {
 			JOptionPane.showMessageDialog(null, "Specified image could not be found\n"
 					+ "or there is no image open", "No such image", JOptionPane.WARNING_MESSAGE);
 			return;
 		}
+	
 		
 		byte[] imageData = null;
 		try {
@@ -77,15 +75,15 @@ public class AddImageToWorksheet implements Command, BioVoxxelMacroExtensionDesc
 				
 
 		Workbook workbook = ExcelUtils.getWorkbook(workbookFile);
-		logger.info("Workbook = " + workbook);
+		System.out.println("Workbook = " + workbook);
 		
 		if (workbook == null) {
-			logger.info("Aborting due to nonexisting workbook");
+			System.out.println("Aborting due to nonexisting workbook");
 			return;	//stop processing if no workbook created or access blocked
 		}
 		
 		Sheet sheet = ExcelUtils.getSheet(workbook, sheetNameOrIndexString);	
-		logger.info("Sheet = " + sheet);
+		System.out.println("Sheet = " + sheet);
 		
 		if (imageData != null) {
 			int pictureIndex = workbook.addPicture(imageData, Workbook.PICTURE_TYPE_PNG);

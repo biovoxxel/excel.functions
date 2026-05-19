@@ -4,13 +4,9 @@
 package excel.functions.plugins;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.logging.Logger;
 
-import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 import excel.functions.macro.BioVoxxelMacroExtensionDescriptor;
 import excel.functions.utils.ExcelUtils;
@@ -22,18 +18,16 @@ import ij.macro.MacroExtension;
  */
 
 public class AppendArrayAsExcelRow implements BioVoxxelMacroExtensionDescriptor {
-
-	protected static final Logger logger = Logger.getLogger(ExcelUtils.class.getName());
 	
 	protected static void appendArrayAsTableRow(String[] array, File workbookFile, String sheetNameOrIndexString, int startingColumn) {
 		
 		String[][] table2DArray = ExcelUtils.convertInRowArray(array);
 	
 		Workbook workbook = ExcelUtils.getWorkbook(workbookFile);
-		logger.info("Workbook = " + workbook);
+		System.out.println("Workbook = " + workbook);
 		
 		if (workbook == null) {
-			logger.info("Aborting due to nonexisting workbook");
+			System.out.println("Aborting due to nonexisting workbook");
 			return;	//stop processing if no workbook created or access blocked
 		}
 		

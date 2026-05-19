@@ -6,7 +6,6 @@ package excel.functions.plugins;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.logging.Logger;
 
 import org.apache.poi.ss.usermodel.Workbook;
 
@@ -21,15 +20,13 @@ import ij.macro.MacroExtension;
 
 public class GetAllWorkbookSheetNames implements BioVoxxelMacroExtensionDescriptor {
 
-	protected static final Logger logger = Logger.getLogger(ExcelUtils.class.getName());
-	
 	protected static String getAllWorkbookSheetNames(File workbookFile) throws IOException {
 		
 		Workbook workbook = ExcelUtils.getWorkbook(workbookFile);
-		logger.info("Workbook = " + workbook);
+		System.out.println("Workbook = " + workbook);
 		
 		if (workbook == null) {
-			logger.info("Aborting due to nonexisting workbook");
+			System.out.println("Aborting due to nonexisting workbook");
 			return "";	//stop processing if no workbook created or access blocked
 		}
 		

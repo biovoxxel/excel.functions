@@ -4,13 +4,9 @@
 package excel.functions.plugins;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.logging.Logger;
 
-import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.scijava.command.Command;
 import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
@@ -27,8 +23,7 @@ import ij.measure.ResultsTable;
 @Plugin(type = Command.class, menuPath = "Plugins>Excel Functions>Append table as columns")
 public class AppendTableAsColumns implements Command, BioVoxxelMacroExtensionDescriptor {
 
-	protected static final Logger logger = Logger.getLogger(ExcelUtils.class.getName()); 
-   
+	
 	@Parameter(label = "Results table name", description = "if this field is empty the active table will be automatically used", required = false)
     private ResultsTable resultsTable;
     
@@ -64,10 +59,10 @@ public class AppendTableAsColumns implements Command, BioVoxxelMacroExtensionDes
 	
 		Workbook workbook = ExcelUtils.getWorkbook(workbookFile);
 		
-		logger.info("Workbook = " + workbook);
+		System.out.println("Workbook = " + workbook);
 		
 		if (workbook == null) {
-			logger.info("Aborting due to nonexisting workbook");
+			System.out.println("Aborting due to nonexisting workbook");
 			return;	//stop processing if no workbook created or access blocked
 		}
 		

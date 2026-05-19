@@ -3,11 +3,8 @@
  */
 package excel.functions.plugins;
 
-import java.awt.Component;
 import java.awt.Frame;
-import java.awt.Window;
 import java.io.File;
-import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
@@ -31,9 +28,6 @@ import ij.measure.ResultsTable;
 
 @Plugin(type = Command.class, menuPath = "Plugins>Excel Functions>Save table as worksheet")
 public class SaveTableAsWorksheet implements Command, BioVoxxelMacroExtensionDescriptor {
-
-	protected static final Logger logger = Logger.getLogger(ExcelUtils.class.getName());
-    
 
 	@Parameter(label = "Results table name", description = "if this field is empty the active table will be automatically used", required = false)
     private ResultsTable selectedTable = null;
@@ -76,20 +70,20 @@ public class SaveTableAsWorksheet implements Command, BioVoxxelMacroExtensionDes
 			JOptionPane.showMessageDialog(null, "No results table found", "No table found", JOptionPane.WARNING_MESSAGE);
 			return;	//stop if an ImageJ table cannot be determined 
 		}
-		logger.finest("Current results table = " + ijResultsTable);
+		System.out.println("Current results table = " + ijResultsTable);
 		
 		String[][] table2DArray = ExcelUtils.getIJTableAsRowColumn2DArray(ijResultsTable, includeColumnHeadings);
 			
 		Workbook workbook = ExcelUtils.getWorkbook(workbookFile);
-		logger.finest("Workbook = " + workbook);
+		System.out.println("Workbook = " + workbook);
 		
 		if (workbook == null) {
-			logger.finest("Aborting due to nonexisting workbook");
+			System.out.println("Aborting due to nonexisting workbook");
 			return;	//stop processing if no workbook created or access blocked
 		}
 		
 		Sheet sheet = ExcelUtils.getUniqueSheet(workbook, sheetName);
-		logger.finest("Current sheet = " + sheet);
+		System.out.println("Current sheet = " + sheet);
 		
 		ExcelUtils.write2DArrayToSheet(sheet, 0, 0, table2DArray);
 		

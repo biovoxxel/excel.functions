@@ -4,7 +4,6 @@
 package excel.functions.plugins;
 
 import java.io.File;
-import java.util.logging.Logger;
 
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -24,9 +23,7 @@ import ij.measure.ResultsTable;
 @Plugin(type = Command.class, menuPath = "Plugins>Excel Functions>Append table as rows")
 public class AppendTableAsRows implements Command, BioVoxxelMacroExtensionDescriptor {
 
-	protected static final Logger logger = Logger.getLogger(ExcelUtils.class.getName());
-	
-   
+	   
 	@Parameter(label = "Results table name", description = "if this field is empty the active table will be automatically used", required = false)
     private ResultsTable resultsTable;
     
@@ -60,15 +57,15 @@ public class AppendTableAsRows implements Command, BioVoxxelMacroExtensionDescri
 		String[][] table2DArray = ExcelUtils.getIJTableAsRowColumn2DArray(ijResultsTable, includeHeadings);
 	
 		Workbook workbook = ExcelUtils.getWorkbook(workbookFile);
-		logger.info("Workbook = " + workbook);
+		System.out.println("Workbook = " + workbook);
 		
 		if (workbook == null) {
-			logger.info("Aborting due to nonexisting workbook");
+			System.out.println("Aborting due to nonexisting workbook");
 			return;	//stop processing if no workbook created or access blocked
 		}
 		
 		Sheet sheet = ExcelUtils.getSheet(workbook, sheetNameOrIndexString);
-		logger.info("sheet = " + sheet.getSheetName());
+		System.out.println("sheet = " + sheet.getSheetName());
 		
 		int rowCount = ExcelUtils.getRowCount(sheet);
 		

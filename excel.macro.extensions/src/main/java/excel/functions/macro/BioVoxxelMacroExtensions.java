@@ -3,14 +3,10 @@
  */
 package excel.functions.macro;
 
-import java.util.logging.Level;
-
 import org.scijava.command.Command;
-import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
 
 import excel.functions.plugins.BioVoxxelPlugins;
-import excel.functions.utils.ExcelUtils;
 import ij.macro.ExtensionDescriptor;
 import ij.macro.Functions;
 import ij.macro.MacroExtension;
@@ -23,17 +19,9 @@ import ij.macro.MacroExtension;
 @Plugin(type = Command.class, menuPath = "Plugins>Excel Functions>Excel Macro Extensions")
 public class BioVoxxelMacroExtensions implements Command, MacroExtension {
 	
-	@Parameter(label = "Debug logging", required = false)
-	private boolean debuglogging;  
 	
 	@Override
 	public void run() {
-		// Activate this class as handler for macro extensions
-		if (debuglogging) {
-			ExcelUtils.setupLogger(Level.ALL);			
-		} else {
-			ExcelUtils.setupLogger(Level.OFF);		
-		}
 		Functions.registerExtensions(this);
 	}
 

@@ -4,7 +4,6 @@
 package excel.functions.plugins;
 
 import java.io.File;
-import java.util.logging.Logger;
 
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -23,7 +22,6 @@ import ij.macro.MacroExtension;
 @Plugin(type = Command.class, menuPath = "Plugins>Excel Functions>Set column data format")
 public class SetColumnDataFormat implements Command, BioVoxxelMacroExtensionDescriptor {
 
-	protected static final Logger logger = Logger.getLogger(ExcelUtils.class.getName());
 	protected static boolean CLOSE_WORKBOOK_AFTER_SAVING = true;
 	
 	@Parameter(required = false)
@@ -49,15 +47,15 @@ public class SetColumnDataFormat implements Command, BioVoxxelMacroExtensionDesc
    protected static void setColumnDataFormat(File workbookFile, String sheetNameOrIndexString, int columnNumber, String dataFormatString) {
 	   
 	   Workbook workbook = ExcelUtils.getWorkbook(workbookFile);
-		logger.info("Workbook = " + workbook);
+		System.out.println("Workbook = " + workbook);
 		
 		if (workbook == null) {
-			logger.info("Aborting due to nonexisting workbook");
+			System.out.println("Aborting due to nonexisting workbook");
 			return;	//stop processing if no workbook created or access blocked
 		}
     	
     	Sheet sheet = ExcelUtils.getSheet(workbook, sheetNameOrIndexString);
-    	logger.info("Current sheet = " + sheet);
+    	System.out.println("Current sheet = " + sheet);
     	
     	ExcelUtils.setColumnDataFormat(sheet, columnNumber, dataFormatString);
     	

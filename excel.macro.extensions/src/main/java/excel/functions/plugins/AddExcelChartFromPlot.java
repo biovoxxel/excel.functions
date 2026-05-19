@@ -5,7 +5,6 @@ package excel.functions.plugins;
 
 import java.awt.Window;
 import java.io.File;
-import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
@@ -33,7 +32,6 @@ import ij.macro.MacroExtension;
 @Plugin(type = Command.class, menuPath = "Plugins>Excel Functions>Add Excel chart from Plot (experimental)")
 public class AddExcelChartFromPlot implements Command, BioVoxxelMacroExtensionDescriptor {
 
-	protected static final Logger logger = Logger.getLogger(ExcelUtils.class.getName());
     
 	@Parameter(required = true)
 	private File file;
@@ -69,15 +67,15 @@ public class AddExcelChartFromPlot implements Command, BioVoxxelMacroExtensionDe
 	protected static void addExcelChartFromPlot(File workbookFile, String sheetNameOrIndexString, Plot plot, ChartTypes chartType) {
 		
 		Workbook workbook = ExcelUtils.getWorkbook(workbookFile);
-		logger.info("Workbook = " + workbook);
+		System.out.println("Workbook = " + workbook);
 		
 		if (workbook == null) {
-			logger.info("Aborting due to nonexisting workbook");
+			System.out.println("Aborting due to nonexisting workbook");
 			return;	//stop processing if no workbook created or access blocked
 		}
 		
 		Sheet sheet = ExcelUtils.getSheet(workbook, sheetNameOrIndexString);
-		logger.info("Current sheet = " + sheet);
+		System.out.println("Current sheet = " + sheet);
 		
 		
 		ExcelUtils.addExcelChartFromPlot(sheet, plot, chartType);
