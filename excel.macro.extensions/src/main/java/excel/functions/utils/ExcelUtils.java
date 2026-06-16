@@ -9,6 +9,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.AtomicMoveNotSupportedException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
@@ -671,10 +672,20 @@ public class ExcelUtils {
 				workbook.close();
 			}
 			
-			Files.move(temp, outputFile.toPath(), StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.ATOMIC_MOVE);
+			
+			try {
 				
-			
-			
+				System.out.println("Atomic Move of temp file");
+				Files.move(temp, outputFile.toPath(), StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.ATOMIC_MOVE);
+				
+			} catch (Exception e) {
+				
+				System.out.println("Atomic Move not supported, running normal file replacement");
+				
+				Files.move(temp, outputFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+				
+			}
+				
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (EmptyFileException efe) {

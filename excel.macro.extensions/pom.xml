@@ -10,7 +10,7 @@
 	
 	<groupId>de.biovoxxel</groupId>
 	<artifactId>excel.macro.extensions</artifactId>
-	<version>5.0.0</version>
+	<version>5.0.1</version>
 	<name>Excel Functions</name>
 	<packaging>jar</packaging>
 	
